@@ -1,13 +1,11 @@
 /* 433-294 Object Oriented Software Development
  * RPG Game Engine
- * Author: <Your name> <Your login>
+ * Author: Xin He <hex1@student.unimelb.edu.au>
  */
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.tiled.TiledMap;
 import org.newdawn.slick.SlickException;
-//import org.newdawn.slick.Image;
-
 
 /** Represents the entire game world.
  * (Designed to be instantiated just once for the whole game).
@@ -64,11 +62,6 @@ public class World
 
         map.render(calStartX(), calStartY(), calStartTX(), calStartTY(), numTileWidth, numTileHeight);
         player.image.drawCentered(player.getxPos()-camera.getMinX(), player.getyPos() - camera.getMinY());
-
-        g.drawString("camera postions: " + camera.getMinX() + "  " + camera.getMinY(), 100, 100);
-        g.drawString("player pos: " + player.getxPos() + " " + player.getyPos(), 100, 250);
-        g.drawString("" + calStartX() + " " + calStartY() + " " + calStartTX() + " " + calStartTY() + " " + numTileWidth + " " + numTileHeight, 100, 150);
-        
     }
 
     /** Calculate the starting X postion where the portion of the map to be rendered.

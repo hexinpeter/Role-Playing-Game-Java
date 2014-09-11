@@ -1,3 +1,8 @@
+/* SWEN20003 Object Oriented Software Development
+ * RPG Game Engine
+ * Author: Xin He <hex1@student.unimelb.edu.au>
+ */
+
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.tiled.TiledMap;

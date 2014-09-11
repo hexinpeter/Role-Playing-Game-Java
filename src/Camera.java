@@ -1,6 +1,6 @@
 /* SWEN20003 Object Oriented Software Development
  * RPG Game Engine
- * Author: <Your name> <Your login>
+ * Author: Xin He <hex1@student.unimelb.edu.au>
  */
 
 import org.newdawn.slick.SlickException;
@@ -41,8 +41,8 @@ public class Camera
     {   
         // TO DO: Fill In
     	unitFollow = player;
-        xPos = player.getxPos();
-        yPos = player.getyPos();
+        xPos = unitFollow.getxPos();
+        yPos = unitFollow.getyPos();
     }
 
     /** Update the game camera to recentre it's viewpoint around the player 
@@ -89,6 +89,9 @@ public class Camera
     throws SlickException
     {
         // TO DO: Fill In
+        unitFollow = unit;
+        xPos = unitFollow.getxPos();
+        yPos = unitFollow.getyPos();
     }
     
 }
