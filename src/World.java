@@ -48,10 +48,7 @@ public class World
     throws SlickException
     {
         // TODO: Fill in
-        System.out.println("original: " + player.getxPos() + " " + player.getyPos());
-
         player.update(dir_x, dir_y, delta, map);
-        
         camera.update();
     }
 
@@ -65,9 +62,10 @@ public class World
         int numTileWidth = screenWidth/map.getTileWidth() + 2;
         int numTileHeight = screenHeight/map.getTileHeight() + 2;
 
-        
         map.render(calStartX(), calStartY(), calStartTX(), calStartTY(), numTileWidth, numTileHeight);
-        player.image.draw(playerX(player), playerY(player));
+        //player.image.draw(playerX(player), playerY(player));
+        //player.image.drawCentered(player.getxPos()-camera.getMinX(), player.getyPos() - camera.getMinY());
+        player.image.draw(screenWidth/2, screenHeight/2);
 
         g.drawString("camera postions: " + camera.getMinX() + "  " + camera.getMinY(), 100, 100);
         g.drawString("player pos: " + player.getxPos() + " " + player.getyPos(), 100, 250);
