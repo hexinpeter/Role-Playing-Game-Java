@@ -17,7 +17,7 @@ public class RPG extends BasicGame
 {
     private World world;
     
-    private static final int FRAME_RATE = 30;
+    private static final int FRAME_RATE = 60;
 
     /** Screen width, in pixels. */
     public static final int screenWidth = 800;
@@ -64,7 +64,7 @@ public class RPG extends BasicGame
             dir_x += 1;
 
         // Let World.update decide what to do with this data.
-        world.update(dir_x, dir_y, delta);
+        world.update(dir_x, dir_y, delta);        
     }
 
     /** Render the entire screen, so it reflects the current game state.

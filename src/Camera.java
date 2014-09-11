@@ -89,7 +89,7 @@ public class Camera
     throws SlickException
     {
         // TO DO: Fill In
-        unitFollow = unit;
+        unitFollow = (Player) unit;
         xPos = unitFollow.getxPos();
         yPos = unitFollow.getyPos();
     }

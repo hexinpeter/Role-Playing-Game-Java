@@ -45,10 +45,7 @@ public class Player
      * @param yMovement the units of movement on y axis.
      * @param delta Time passed since last frame (milliseconds).
      */
-    public void update(int xMovement, int yMovement, int delta, TiledMap map) {
-        System.out.println("x: " + xMovement + "y: " + yMovement + "delta: " + delta + " resultX: " + (xMovement * SPEED * delta)
-        						+ " resultY: " + (yMovement * SPEED * delta));
-        
+    public void update(int xMovement, int yMovement, int delta, TiledMap map) {        
         int xPosTest = (int) (xPos + xMovement * SPEED * delta);
         int yPosTest = (int) (yPos + yMovement * SPEED * delta);
 
