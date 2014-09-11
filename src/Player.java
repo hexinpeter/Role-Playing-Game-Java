@@ -11,9 +11,9 @@ public class Player
 
     /** The player's image. */
     public Image image;
-    private final int START_XPOS = 700;
-    private final int START_YPOS = 700;
-    private final float SPEED = 0.5f;
+    private final int START_XPOS = 756;
+    private final int START_YPOS = 684;
+    private final float SPEED = 0.25f;
 
 	/** Create a new player object.
 	 * @param imageLocation The location of the player's image.
@@ -41,7 +41,9 @@ public class Player
      * @param delta Time passed since last frame (milliseconds).
      */
     public void update(int xMovement, int yMovement, int delta, TiledMap map) {
-        //System.out.println("x: " + xMovement + "y: " + yMovement);
+        System.out.println("x: " + xMovement + "y: " + yMovement + "delta: " + delta + " resultX: " + (xMovement * SPEED * delta)
+        						+ " resultY: " + (yMovement * SPEED * delta));
+        
         int xPosTest = (int) (xPos + xMovement * SPEED * delta);
         int yPosTest = (int) (yPos + yMovement * SPEED * delta);
 

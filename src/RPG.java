@@ -16,6 +16,8 @@ import org.newdawn.slick.SlickException;
 public class RPG extends BasicGame
 {
     private World world;
+    
+    private static final int FRAME_RATE = 30;
 
     /** Screen width, in pixels. */
     public static final int screenWidth = 800;
@@ -84,6 +86,7 @@ public class RPG extends BasicGame
     {
         AppGameContainer app = new AppGameContainer(new RPG());
         // setShowFPS(true), to show frames-per-second.
+        app.setTargetFrameRate(FRAME_RATE);
         app.setShowFPS(false);
         app.setDisplayMode(screenWidth, screenHeight, false);
         app.start();
