@@ -63,9 +63,7 @@ public class World
         int numTileHeight = screenHeight/map.getTileHeight() + 2;
 
         map.render(calStartX(), calStartY(), calStartTX(), calStartTY(), numTileWidth, numTileHeight);
-        //player.image.draw(playerX(player), playerY(player));
-        //player.image.drawCentered(player.getxPos()-camera.getMinX(), player.getyPos() - camera.getMinY());
-        player.image.draw(screenWidth/2, screenHeight/2);
+        player.image.drawCentered(player.getxPos()-camera.getMinX(), player.getyPos() - camera.getMinY());
 
         g.drawString("camera postions: " + camera.getMinX() + "  " + camera.getMinY(), 100, 100);
         g.drawString("player pos: " + player.getxPos() + " " + player.getyPos(), 100, 250);
@@ -95,21 +93,6 @@ public class World
      */
     private int calStartTY() {
         return (camera.getMinY() < 0) ? 0 : camera.getMinY()/map.getTileHeight();
-    }
-
-    /** Calculate the player's x coordinate on the screen.
-     * @param player the target player 
-     */
-    private int playerX(Player player) {
-        return player.getxPos() - camera.getMinX() + calStartX();
-        //return pW - cW + screenWidth/2;
-    }
-
-    /** Calculate the player's y coordinate on the screen
-     * @param player the target player 
-     */
-    private int playerY(Player player) {
-        return player.getyPos() - camera.getMinY() + calStartY();
     }
 
 }
