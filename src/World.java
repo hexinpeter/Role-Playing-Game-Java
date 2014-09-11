@@ -51,18 +51,6 @@ public class World
         System.out.println("original: " + player.getxPos() + " " + player.getyPos());
 
         player.update(dir_x, dir_y, delta, map);
-
-        // System.out.println("before update: " + player.getxPos() + " " + player.getyPos());
-
-        // int playerTileID = curTileID(player);
-        // if (map.getTileProperty(playerTileID, "block", "0") != "0"){
-        // 	System.out.println("success");
-        //     player.cancelUpdate();
-        //     System.out.println("after update: " + player.getxPos() + " " + player.getyPos());
-
-        // }
-
-        // System.out.println("tile: " + map.getTileProperty(playerTileID, "block", "0"));
         
         camera.update();
     }
@@ -126,29 +114,6 @@ public class World
         return player.getyPos() - camera.getMinY() + calStartY();
     }
 
-    // /** Find the current global tileID that the player is standing on.
-    //  * -1 is returned if the player does not stand on any tile.
-    //  * @param player the target player we are looking at.
-    //  */
-    // private int curTileID(Player player) {
-    //     if (player.getxPos() > 0 && player.getyPos() > 0) {
-    //         int xT = player.getxPos()/map.getTileWidth();
-    //         int yT = player.getyPos()/map.getTileHeight();
-    //         return map.getTileId(xT, yT, 0);
-    //     }
-    //     return -1;
-    // }
-
-
-    /** Determine the legitimate movement by the player, and update player.
-     * @param player the target player
-     * @param dir_x The player's movement in the x axis (-1, 0 or 1).
-     * @param dir_y The player's movement in the y axis (-1, 0 or 1).
-     * @param delta Time passed since last frame (milliseconds).
-     */
-    // private void playerUpdate(Player player, int dir_x, int dir_y, int delta) {
-
-    // }
 }
 
 

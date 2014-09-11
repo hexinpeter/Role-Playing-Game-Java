@@ -9,10 +9,6 @@ public class Player
     private int xPos;
     private int yPos;
 
-    // * The player's world position before the update in this current frame. 
-    // private int previousXPos;
-    // private int previousYPos;
-
     /** The player's image. */
     public Image image;
     private final int START_XPOS = 700;
@@ -53,47 +49,7 @@ public class Player
             xPos = xPosTest;
         if (map.getTileProperty(curTileID(xPos, yPosTest, map), "block", "0") == "0")
             yPos = yPosTest;
-
-     //    previousXPos = xPos;
-     //    previousYPos = yPos;
-    	// xPos += xMovement * SPEED * delta;
-    	// yPos += yMovement * SPEED * delta;
     }
-
-    // /** Revert the update action in this current frame. 
-    //  */
-    // public void cancelUpdate() {
-    //     xPos = previousXPos;
-    //     yPos = previousYPos;
-    // }
-
-    // /** Return the world xPos of player if it moves 1 unit to left.
-    //  * @param delta Time passed since last frame (milliseconds).
-    //  */
-    // public int xPosIfMoveLeft(int delta) {
-    //     return xPos += -1 * SPEED * delta;
-    // }
-
-    // /** Return the world xPos of player if it moves 1 unit to right.
-    //  * @param delta Time passed since last frame (milliseconds).
-    //  */
-    // public int xPosIfMoveRight(int delta) {
-    //     return xPos += 1 * SPEED * delta;
-    // }
-
-    // /** Return the world xPos of player if it moves 1 unit upwards.
-    //  * @param delta Time passed since last frame (milliseconds).
-    //  */
-    // public int yPosIfMoveUp(int delta) {
-    //     return yPos += -1 * SPEED * delta;
-    // }
-
-    // /** Return the world xPos of player if it moves 1 unit downwards.
-    //  * @param delta Time passed since last frame (milliseconds).
-    //  */
-    // public int yPosIfMoveUp(int delta) {
-    //     return yPos += 1 * SPEED * delta;
-    // }
 
     /** Find the current global tileID that the player is standing on.
      * -1 is returned if the player does not stand on any tile.
