@@ -29,7 +29,7 @@ public class World
     public final int screenHeight = RPG.screenHeight;
 
     private static TiledMap map;
-    private static Player player;
+    public static Player player;
     private static Camera camera;
     private static ArrayList<Villager> villagerList;
     private static ArrayList<Monster> monsterList;
@@ -64,11 +64,43 @@ public class World
         villagerList.add(new Prince((double)467, (double)679));
 
         // add items
-        itemList.add(new Sword((double)770, (double)500));
-        itemList.add(new Amulet((double)791, (double)600));
-        itemList.add(new Tome((double)770, (double)700));
-        itemList.add(new Elixir((double)791, (double)800));
+        itemList.add(new Sword((double)4791, (double)1253));
+        itemList.add(new Amulet((double)965, (double)3563));
+        itemList.add(new Tome((double)546, (double)6707));
+        itemList.add(new Elixir((double)1976, (double)402));
         // add monsters
+        monsterList.add(new Bat((double)1431, (double)864));
+        monsterList.add(new Bat((double)1154, (double)1321));
+        monsterList.add(new Bat((double)807, (double)2315));
+        monsterList.add(new Bat((double)833, (double)2657));
+        monsterList.add(new Bat((double)1090, (double)3200));
+        monsterList.add(new Bat((double)676, (double)3187));
+        monsterList.add(new Bat((double)836, (double)3966));
+        monsterList.add(new Bat((double)653, (double)4367));
+        monsterList.add(new Bat((double)1343, (double)2731));
+        monsterList.add(new Bat((double)1835, (double)3017));
+        monsterList.add(new Bat((double)1657, (double)3954));
+        monsterList.add(new Bat((double)1054, (double)5337));
+        monsterList.add(new Bat((double)801, (double)5921));
+        monsterList.add(new Bat((double)560, (double)6682));
+        monsterList.add(new Bat((double)1275, (double)5696));
+        monsterList.add(new Bat((double)1671, (double)5991));
+        monsterList.add(new Bat((double)2248, (double)6298));
+        monsterList.add(new Bat((double)2952, (double)6373));
+        monsterList.add(new Bat((double)3864, (double)6695));
+        monsterList.add(new Bat((double)4554, (double)6443));
+        monsterList.add(new Bat((double)4683, (double)6228));
+        monsterList.add(new Bat((double)5312, (double)6606));
+        monsterList.add(new Bat((double)5484, (double)5946));
+        monsterList.add(new Bat((double)6371, (double)5634));
+        monsterList.add(new Bat((double)5473, (double)3544));
+        monsterList.add(new Bat((double)5944, (double)3339));
+        monsterList.add(new Bat((double)6301, (double)3414));
+        monsterList.add(new Bat((double)6388, (double)1994));
+        monsterList.add(new Bat((double)6410, (double)1584));
+        monsterList.add(new Bat((double)5314, (double)274));
+
+
         monsterList.add(new Zombie((double)681, (double)3201));
         monsterList.add(new Zombie((double)691, (double)4360));
         monsterList.add(new Zombie((double)2166, (double)2650));
@@ -168,7 +200,6 @@ public class World
         monsterList.add(new Skeleton((double)1970, (double)553));
         monsterList.add(new Skeleton((double)2143, (double)1048));
 
-
         monsterList.add(new Draelic((double)2069, (double)510));
 
 
@@ -208,17 +239,17 @@ public class World
             m.update(delta, this);
         }
 
-        // Aggressive Monster sees/meets Player
-        ArrayList<Entity> seeRange = surroundingEntities(AggressiveMonster.class, (double)51, (double)150);
-        ArrayList<Entity> meetRange = surroundingEntities(AggressiveMonster.class, (double)0, (double)50);        
-        for (Entity m : seeRange) {
-        	AggressiveMonster a = (AggressiveMonster) m;
-            a.seePlayer(player, delta, this);
-        }
-        for (Entity m : meetRange) {
-        	AggressiveMonster a = (AggressiveMonster) m;
-            a.meetPlayer(player);
-        }
+        // // Aggressive Monster sees/meets Player
+        // ArrayList<Entity> seeRange = surroundingEntities(AggressiveMonster.class, (double)51, (double)150);
+        // ArrayList<Entity> meetRange = surroundingEntities(AggressiveMonster.class, (double)0, (double)50);        
+        // for (Entity m : seeRange) {
+        // 	AggressiveMonster a = (AggressiveMonster) m;
+        //     a.seePlayer(player, delta, this);
+        // }
+        // for (Entity m : meetRange) {
+        // 	AggressiveMonster a = (AggressiveMonster) m;
+        //     a.meetPlayer(player);
+        // }
         
     }
 

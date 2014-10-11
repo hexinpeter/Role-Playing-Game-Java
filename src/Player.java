@@ -45,10 +45,26 @@ public class Player extends Unit
      */
     public void update(int xMovement, int yMovement, int delta, World world) {        
         move(xMovement, yMovement, delta, SPEED, world);
+        if (hitP == 0) {
+            xPos = (double) 756;
+            yPos = (double) 684;
+            loseAllItems();
+            hitP = maxHP;
+        }
         if ((cooldownTimer - delta)> 0) 
             cooldownTimer -= delta;
         if ((cooldownTimer - delta)< 0) 
             cooldownTimer = 0;
+    }
+    
+    private void loseAllItems() {
+    	maxHP = 100;
+        maxCooldown = 600;
+        maxDamage = 26;
+        for (Item i : itemList) {
+            i.putBack();
+        }
+        itemList.clear();
     }
     
     /** Add item to its itemList */
@@ -76,7 +92,7 @@ public class Player extends Unit
     public void attack(Monster m) {
         Random rand = new Random();
         if (cooldownTimer == 0) {
-            m.attacked(xPos, yPos, rand.nextInt(maxDamage + 1));
+            m.attacked(rand.nextInt(maxDamage + 1));
             cooldownTimer = maxCooldown;
         }
         System.out.println(cooldownTimer + " attack" );
@@ -115,6 +131,7 @@ public class Player extends Unit
           yPos = yPosTest;
     }
 
+    
 }
 
 

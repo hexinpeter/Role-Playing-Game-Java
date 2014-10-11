@@ -5,8 +5,7 @@ public abstract class AggressiveMonster extends Monster
 {
 	private int cooldownTimer = 0; // in milliseconds
 
-	public void attacked(double fromX, double fromY, int hp){
-		System.out.println("actacked by " + hp);
+	public void attacked(int hp){
 		hitP = ((hitP - hp) > 0) ? (hitP - hp) : 0;
 	}
 
