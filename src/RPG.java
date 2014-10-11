@@ -17,7 +17,7 @@ public class RPG extends BasicGame
 {
     private World world;
     
-    private static final int FRAME_RATE = 60;
+    private static final int FRAME_RATE = 200;
 
     /** Screen width, in pixels. */
     public static final int screenWidth = 800;

@@ -21,16 +21,16 @@ public class Camera
 
     
     /** The camera's position in the world, in x and y coordinates. */
-    private int xPos;
-    private int yPos;
+    private double xPos;
+    private double yPos;
 
     
-    public int getxPos() {
+    public double getxPos() {
         // TO DO: Fill In
         return xPos;
     }
 
-    public int getyPos() {
+    public double getyPos() {
         // TO DO: Fill In
         return yPos;
     }
@@ -59,28 +59,28 @@ public class Camera
      */
     public int getMinX(){
         // TO DO: Fill In
-        return xPos - screenWidth/2;
+        return (int)(xPos - screenWidth/2);
     }
     
     /** return the maximum x value on screen 
      */
     public int getMaxX(){
         // TO DO: Fill In
-        return xPos + screenWidth/2;
+        return (int)(xPos + screenWidth/2);
     }
     
     /** return the minimum y value on screen 
      */
     public int getMinY(){
         // TO DO: Fill In
-        return yPos - screenHeight/2;
+        return (int)(yPos - screenHeight/2);
     }
     
     /** return the maximum y value on screen 
      */
     public int getMaxY(){
         // TO DO: Fill In
-        return yPos + screenHeight/2;
+        return (int)(yPos + screenHeight/2);
     }
 
     /** Tells the camera to follow a given unit. 
