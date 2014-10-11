@@ -34,6 +34,7 @@ public class World
     private static ArrayList<Villager> villagerList;
     private static ArrayList<Monster> monsterList;
     private static ArrayList<Item> itemList;
+    ArrayList<Entity> allEntities;
     private static Image panel;
 
     /** Create a new World object. */
@@ -48,8 +49,9 @@ public class World
         panel = new Image(PANEL_PNG_LOCATION);
 
         villagerList = new ArrayList<Villager>();
-        //monsterList = new ArrayList<Monster>();
+        monsterList = new ArrayList<Monster>();
         itemList = new ArrayList<Item>();
+        allEntities = new ArrayList<Entity>();
         loadContent();
     }
 
@@ -67,7 +69,11 @@ public class World
         itemList.add(new Tome((double)770, (double)700));
         itemList.add(new Elixir((double)791, (double)800));
         // add monsters
+        monsterList.add(new Zombie((double)681, (double)501));
 
+        allEntities.addAll(villagerList);
+        allEntities.addAll(itemList);
+        allEntities.addAll(monsterList);
     }
 
     /** Update the game state for a frame.
@@ -97,11 +103,21 @@ public class World
         // update Uncontrollables
         for (Villager v : villagerList) 
             v.update(delta, this);
-        // for (Monster m : monsterList) {
-        //     m.update(delta, this);
-        // }
-        
+        for (Monster m : monsterList) {
+            m.update(delta, this);
+        }
 
+        // Aggressive Monster sees/meets Player
+        ArrayList<Entity> seeRange = surroundingEntities(AggressiveMonster.class, (double)51, (double)150);
+        ArrayList<Entity> meetRange = surroundingEntities(AggressiveMonster.class, (double)0, (double)50);        
+        for (Entity m : seeRange) {
+        	AggressiveMonster a = (AggressiveMonster) m;
+            a.seePlayer(player, delta, this);
+        }
+        for (Entity m : meetRange) {
+        	AggressiveMonster a = (AggressiveMonster) m;
+            a.meetPlayer(player);
+        }
         
     }
 
@@ -109,7 +125,7 @@ public class World
     private void takeAction()
     {
         ArrayList<Entity> range50 = surroundingEntities(Entity.class, (double)0, (double)50);
-        System.out.println(range50);
+        //System.out.println(range50);
 
         for (Entity e : range50) {
             // pick up item
@@ -139,18 +155,12 @@ public class World
     /** Return the list of entities within the specified range of Player */
     private ArrayList<Entity> surroundingEntities(Class<?> cls, double startRange, double endRange) {
         ArrayList<Entity> nearEntityList = new ArrayList<Entity>();
-        ArrayList<Entity> allEntities = new ArrayList<Entity>();
         ArrayList<Entity> targetEntities = new ArrayList<Entity>();
-        allEntities.addAll(villagerList);
-        allEntities.addAll(itemList);
-        //allEntities.addAll(monsterList);
-
+        
         // filter the Entities
         for (int i = 0; i < allEntities.size() ; i++) {
-        	System.out.println(allEntities.get(i) + "   " + allEntities.get(i).getClass() +"   "+ cls);
             if (cls.isAssignableFrom(allEntities.get(i).getClass())) {
                 targetEntities.add(allEntities.get(i));
-                System.out.println("s");
             }
         }
 
@@ -185,14 +195,9 @@ public class World
         map.render(calStartX(), calStartY(), calStartTX(), calStartTY(), numTileWidth, numTileHeight);
         player.render(g, camera.getMinX(), camera.getMinY());
 
-        // render uncontrollables
-        for (Villager v : villagerList) {
-            v.render(g, camera.getMinX(), camera.getMinY());
-        }
-
-        // render items
-        for (Item i : itemList) {
-            i.render(g, camera.getMinX(), camera.getMinY());
+        for (Entity e : allEntities) {
+            if (e.getexist())
+                e.render(g, camera.getMinX(), camera.getMinY());
         }
 
         renderPanel(g);

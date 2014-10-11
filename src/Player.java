@@ -70,13 +70,16 @@ public class Player extends Unit
     }
 
     public void attacked(int hp) {
-        hitP -= hp;
+        hitP = (hitP - hp) > 0 ? (hitP - hp) : 0;
     }
 
     public void attack(Monster m) {
         Random rand = new Random();
-        if (cooldownTimer == 0) 
+        if (cooldownTimer == 0) {
             m.attacked(xPos, yPos, rand.nextInt(maxDamage + 1));
+            cooldownTimer = maxCooldown;
+        }
+        System.out.println(cooldownTimer + " attack" );
     }
 
     /** Check if the Player has an item of class cls */
@@ -95,6 +98,21 @@ public class Player extends Unit
      */
     public void render(Graphics g, int cameraMinX, int cameraMinY) {
     	image.drawCentered((int)(xPos-cameraMinX), (int)(yPos - cameraMinY));
+    }
+
+    /** Update the player's position.
+     * @param xMovement the units of movement on x axis.
+     * @param yMovement the units of movement on y axis.
+     * @param delta Time passed since last frame (milliseconds).
+     */
+    public void move(int xMovement, int yMovement, int delta, float speed, World world) {        
+      int xPosTest = (int) (xPos + xMovement * speed * delta);
+      int yPosTest = (int) (yPos + yMovement * speed * delta);
+
+      if (!world.hasBlocking(xPosTest, (int)yPos))
+            xPos = xPosTest;
+      if (!world.hasBlocking((int)xPos, yPosTest))
+          yPos = yPosTest;
     }
 
 }

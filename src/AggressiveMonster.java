@@ -6,14 +6,17 @@ public abstract class AggressiveMonster extends Monster
 	private int cooldownTimer = 0; // in milliseconds
 
 	public void attacked(double fromX, double fromY, int hp){
-		hitP -= hp;
+		System.out.println("actacked by " + hp);
+		hitP = ((hitP - hp) > 0) ? (hitP - hp) : 0;
 	}
 
 	public void update(int delta, World w) {
 		if ((cooldownTimer - delta)> 0) 
-        cooldownTimer -= delta;
+      cooldownTimer -= delta;
     if ((cooldownTimer - delta)< 0) 
-        cooldownTimer = 0;
+      cooldownTimer = 0;
+    if (hitP == 0) 
+    	exist = false;	
 	}
 
 	/** move towards the Player when the Player is within the range of 150 pixels */
@@ -28,9 +31,10 @@ public abstract class AggressiveMonster extends Monster
 		if ((yPos - p.getyPos()) > 0)  {
 			yMovement = -1;
 		}
-		if ((xPos - p.getxPos()) < 0)  {
+		if ((yPos - p.getyPos()) < 0)  {
 			yMovement = 1;
 		}
+		System.out.println("meet p " + xPos + " " + yPos + "  Player: " + p.getxPos() + "  " + p.getyPos() + "cool " + cooldownTimer);
 
 		move(xMovement, yMovement, delta, speed, world);
 	}
@@ -38,7 +42,11 @@ public abstract class AggressiveMonster extends Monster
 	/** attacks the Player when the Player is within the range of 50 pixels */
 	public void meetPlayer(Player p) {
 		Random rand = new Random();
-		if (cooldownTimer == 0)
+		if (cooldownTimer == 0) {
 			p.attacked(rand.nextInt(maxDamage + 1));
+			cooldownTimer = maxCooldown;
+		}
+		
 	}
+
 }

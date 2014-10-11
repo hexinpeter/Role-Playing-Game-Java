@@ -26,14 +26,6 @@ public abstract class Unit extends Entity
    * @param yMovement the units of movement on y axis.
    * @param delta Time passed since last frame (milliseconds).
    */
-  public void move(int xMovement, int yMovement, int delta, float speed, World world) {        
-      int xPosTest = (int) (xPos + xMovement * speed * delta);
-      int yPosTest = (int) (yPos + yMovement * speed * delta);
-
-      if (!world.hasBlocking(xPosTest, (int)yPos))
-            xPos = xPosTest;
-      if (!world.hasBlocking((int)xPos, yPosTest))
-          yPos = yPosTest;
-  }
+  public abstract void move(int xMovement, int yMovement, int delta, float speed, World world);
 	
 }
