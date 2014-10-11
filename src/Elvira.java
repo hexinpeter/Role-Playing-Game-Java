@@ -4,7 +4,7 @@ import org.newdawn.slick.SlickException;
 
 public class Elvira extends Villager
 {
-	private final String imageLocation = "assets/units/necromancer.png";
+	private final String imageLocation = "assets/units/shaman.png";
 	
 
 	public Elvira(double xPos, double yPos) throws 

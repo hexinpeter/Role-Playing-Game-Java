@@ -34,7 +34,7 @@ public abstract class AggressiveMonster extends Monster
 		if ((yPos - p.getyPos()) < 0)  {
 			yMovement = 1;
 		}
-		System.out.println("meet p " + xPos + " " + yPos + "  Player: " + p.getxPos() + "  " + p.getyPos() + "cool " + cooldownTimer);
+		//System.out.println("meet p " + xPos + " " + yPos + "  Player: " + p.getxPos() + "  " + p.getyPos() + "cool " + cooldownTimer);
 
 		move(xMovement, yMovement, delta, speed, world);
 	}
