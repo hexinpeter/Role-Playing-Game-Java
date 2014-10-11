@@ -1,4 +1,4 @@
 public abstract class Uncontrollable extends Unit
 {
-	public abstract void update(int delta);
+	public abstract void update(int delta, World w);
 }

@@ -9,17 +9,19 @@ public abstract class Villager extends Uncontrollable
 	private String isSaying;
 	private int sayTimer = 0; // in milliseconds
 	private final int DISPLAY_DURATION = 4000; // in milliseconds
+	private final Color TEXT_BG = new Color(253, 233, 192, 0.5f);
 	private final Color TEXT_COLOR = Color.black; 
 
 	/** Manage the duration of Villager is message display.
    * @param delta Time passed since last frame (milliseconds).
    */ 
-	public void update(int delta){
+	public void update(int delta, World w){
 		if (sayTimer + delta > DISPLAY_DURATION){
 			sayTimer = 0;
 			isSaying = null;
 		}
-		sayTimer += delta;
+    else if (isSaying != null)
+		  sayTimer += delta;
 	}
 
 	/** Render the Villager and its message according to the camera's view positions 
@@ -33,13 +35,17 @@ public abstract class Villager extends Uncontrollable
   	image.drawCentered(screenX, screenY);
 
   	if (isSaying != null) {
+  		g.setColor(TEXT_BG);
+  		g.fillRect(0, screenY - 40, RPG.screenWidth, 30);
+  		
   		g.setColor(TEXT_COLOR);
-  		g.drawString(isSaying, screenX, screenY+32);
+  		g.drawString(isSaying, screenX - 300, screenY-32);
   	}
   }
 
   public void setisSaying(String message) {
-  	isSaying = message;
+	if (sayTimer == 0)
+		isSaying = message;
   }
 
   public abstract void meetPlayer(Player p);

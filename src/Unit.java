@@ -3,17 +3,21 @@ import org.newdawn.slick.tiled.TiledMap;
 
 public abstract class Unit extends Entity
 {
-	protected int maxHP, maxCooldown, maxDamage;
+	protected int maxHP, maxCooldown, maxDamage, hitP;
 
-	public int getMaxHP() {
+	public int gethitP() {
+		return hitP;
+	}
+
+	public int getmaxHP() {
 		return maxHP;
 	}
 
-	public int getMaxCooldown() {
+	public int getmaxCooldown() {
 		return maxCooldown;
 	}
 
-	public int getMaxDamage() {
+	public int getmaxDamage() {
 		return maxDamage;
 	}
 
