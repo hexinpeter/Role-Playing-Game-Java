@@ -11,7 +11,7 @@ public abstract class Villager extends Uncontrollable
 	private final int DISPLAY_DURATION = 4000; // in milliseconds
 	private final Color TEXT_BG = new Color(253, 233, 192, 0.5f);
 	private final Color TEXT_COLOR = Color.black; 
-
+		
 	/** Manage the duration of Villager is message display.
    * @param delta Time passed since last frame (milliseconds).
    */ 
@@ -29,17 +29,20 @@ public abstract class Villager extends Uncontrollable
    * @param cameraMinX the world position of the camera's view's left border 
    * @param cameraMinY the world position of the camera's view's top border
    */
+  @Override
   public void render(Graphics g, int cameraMinX, int cameraMinY) {
   	int screenX = (int)(xPos-cameraMinX);
   	int screenY = (int)(yPos - cameraMinY);
   	image.drawCentered(screenX, screenY);
-
+  	
+  	renderInfo(g, this, cameraMinX, cameraMinY);
+  	
   	if (isSaying != null) {
   		g.setColor(TEXT_BG);
-  		g.fillRect(0, screenY - 40, RPG.screenWidth, 30);
+  		g.fillRect(0, screenY - 80, RPG.screenWidth, 30);
   		
   		g.setColor(TEXT_COLOR);
-  		g.drawString(isSaying, screenX - 300, screenY-32);
+  		g.drawString(isSaying, screenX - 300, screenY-75);
   	}
   }
 

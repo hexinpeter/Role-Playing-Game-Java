@@ -11,6 +11,10 @@ public class Garth extends Villager
 	 SlickException{
 		this.xPos = xPos;
 		this.yPos = yPos;
+		hitP = 1;
+		maxHP = 1;
+		maxDamage = 0;
+		maxCooldown = 0;
 		image = new Image(imageLocation);
 	}
 

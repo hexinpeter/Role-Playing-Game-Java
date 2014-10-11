@@ -32,7 +32,7 @@ public class World
     private static Player player;
     private static Camera camera;
     private static ArrayList<Villager> villagerList;
-    //private static ArrayList<Monster> monsterList;
+    private static ArrayList<Monster> monsterList;
     private static ArrayList<Item> itemList;
     private static Image panel;
 
@@ -79,8 +79,6 @@ public class World
     public void update(int dir_x, int dir_y, boolean action, int delta)
     throws SlickException
     {
-
-
         // TODO: Fill in
         player.update(dir_x, dir_y, delta, this);
         camera.update();
@@ -88,30 +86,30 @@ public class World
         if (action) {
         	takeAction();
         }
-        
 
-
-        // update Uncontrollables
-        for (Villager v : villagerList) {
-            v.update(delta, this);
-        }
         // // remove dead monsters
         // for (Monster m : monsterList) {
-        //     if (m.gethitP < 0) {
-        //         monsterList.remove(m)
+        //     if (m.gethitP() < 0) {
+        //         monsterList.remove(m);
         //     }
         // }
-
+        
+        // update Uncontrollables
+        for (Villager v : villagerList) 
+            v.update(delta, this);
         // for (Monster m : monsterList) {
-        //     m.update(delta);
+        //     m.update(delta, this);
         // }
+        
+
+        
     }
 
     /** Take action towards Player's surrounding entities */
     private void takeAction()
     {
-        ArrayList<Entity> range50 = surroundingEntities((double)50);
-        //System.out.println(range50);
+        ArrayList<Entity> range50 = surroundingEntities(Entity.class, (double)0, (double)50);
+        System.out.println(range50);
 
         for (Entity e : range50) {
             // pick up item
@@ -128,19 +126,37 @@ public class World
                 v.meetPlayer(player);
                 //System.out.println("meet " + e + " " + villagerList.size());
             }
+
+            // attack Monster
+            if (e instanceof Monster) {
+                Monster m = (Monster) e;
+                player.attack(m);
+            }
         }
     }
 
 
     /** Return the list of entities within the specified range of Player */
-    private ArrayList<Entity> surroundingEntities(double range) {
+    private ArrayList<Entity> surroundingEntities(Class<?> cls, double startRange, double endRange) {
         ArrayList<Entity> nearEntityList = new ArrayList<Entity>();
         ArrayList<Entity> allEntities = new ArrayList<Entity>();
+        ArrayList<Entity> targetEntities = new ArrayList<Entity>();
         allEntities.addAll(villagerList);
         allEntities.addAll(itemList);
+        //allEntities.addAll(monsterList);
 
-        for (Entity v : allEntities) {
-            if ((calDistance(player, v) <= range) && v.getexist()) {
+        // filter the Entities
+        for (int i = 0; i < allEntities.size() ; i++) {
+        	System.out.println(allEntities.get(i) + "   " + allEntities.get(i).getClass() +"   "+ cls);
+            if (cls.isAssignableFrom(allEntities.get(i).getClass())) {
+                targetEntities.add(allEntities.get(i));
+                System.out.println("s");
+            }
+        }
+
+        for (Entity v : targetEntities) {
+            double dist = calDistance(player, v);
+            if (dist<=endRange && dist>=startRange && v.getexist()) {
                 nearEntityList.add(v);
             }
         }

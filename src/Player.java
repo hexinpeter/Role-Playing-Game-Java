@@ -4,10 +4,9 @@
  */
 
 import java.util.ArrayList;
-
+import java.util.Random;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.tiled.TiledMap;
 import org.newdawn.slick.Graphics;
 
 
@@ -16,7 +15,8 @@ public class Player extends Unit
     private float SPEED = 0.25f;
     private final String imageLocation = "assets/units/player.png";
     public ArrayList<Item> itemList;
-    
+    private int cooldownTimer; // in milliseconds;
+
 	/** Create a new player object.
 	 * @param imageLocation The location of the player's image.
 	 */
@@ -45,6 +45,10 @@ public class Player extends Unit
      */
     public void update(int xMovement, int yMovement, int delta, World world) {        
         move(xMovement, yMovement, delta, SPEED, world);
+        if ((cooldownTimer - delta)> 0) 
+            cooldownTimer -= delta;
+        if ((cooldownTimer - delta)< 0) 
+            cooldownTimer = 0;
     }
     
     /** Add item to its itemList */
@@ -63,6 +67,16 @@ public class Player extends Unit
             Amulet a = (Amulet) i;
             maxHP += a.getsupHP();
         }
+    }
+
+    public void attacked(int hp) {
+        hitP -= hp;
+    }
+
+    public void attack(Monster m) {
+        Random rand = new Random();
+        if (cooldownTimer == 0) 
+            m.attacked(xPos, yPos, rand.nextInt(maxDamage + 1));
     }
 
     /** Check if the Player has an item of class cls */

@@ -17,7 +17,7 @@ public class Camera
     /** Screen width, in pixels. */
     public final int screenWidth = RPG.screenWidth;
     /** Screen height, in pixels. */
-    public final int screenHeight = RPG.screenHeight;
+    public final int screenHeight = RPG.screenHeight - RPG.PANELHEIGHT;
 
     
     /** The camera's position in the world, in x and y coordinates. */
