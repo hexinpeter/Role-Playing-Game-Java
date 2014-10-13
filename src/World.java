@@ -239,17 +239,17 @@ public class World
             m.update(delta, this);
         }
 
-        // // Aggressive Monster sees/meets Player
-        // ArrayList<Entity> seeRange = surroundingEntities(AggressiveMonster.class, (double)51, (double)150);
-        // ArrayList<Entity> meetRange = surroundingEntities(AggressiveMonster.class, (double)0, (double)50);        
-        // for (Entity m : seeRange) {
-        // 	AggressiveMonster a = (AggressiveMonster) m;
-        //     a.seePlayer(player, delta, this);
-        // }
-        // for (Entity m : meetRange) {
-        // 	AggressiveMonster a = (AggressiveMonster) m;
-        //     a.meetPlayer(player);
-        // }
+        // Aggressive Monster sees/meets Player
+        ArrayList<Entity> seeRange = surroundingEntities(AggressiveMonster.class, (double)51, (double)150);
+        ArrayList<Entity> meetRange = surroundingEntities(AggressiveMonster.class, (double)0, (double)50);        
+        for (Entity m : seeRange) {
+        	AggressiveMonster a = (AggressiveMonster) m;
+            a.seePlayer(player, delta, this);
+        }
+        for (Entity m : meetRange) {
+        	AggressiveMonster a = (AggressiveMonster) m;
+            a.meetPlayer(player);
+        }
         
     }
 
