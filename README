@@ -2,7 +2,7 @@ This is a Java Role Playing Game developed using the slick2D library.
 
 You can import this directly into Eclipse, and press 'run' to start playing the game. 
 
-If you using Windows, you have to import a new set of slick2D library in Eclipse.
+If you are using Windows, you have to import a new set of slick2D library in Eclipse.
 
 Game Control:
 4 Arrow Keys, for movement
