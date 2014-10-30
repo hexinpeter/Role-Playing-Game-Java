@@ -224,13 +224,6 @@ public class World
         if (action) {
         	takeAction();
         }
-
-        // // remove dead monsters
-        // for (Monster m : monsterList) {
-        //     if (m.gethitP() < 0) {
-        //         monsterList.remove(m);
-        //     }
-        // }
         
         // update Uncontrollables
         for (Villager v : villagerList) 
@@ -257,7 +250,6 @@ public class World
     private void takeAction()
     {
         ArrayList<Entity> range50 = surroundingEntities(Entity.class, (double)0, (double)50);
-        //System.out.println(range50);
 
         for (Entity e : range50) {
             // pick up item
@@ -265,14 +257,12 @@ public class World
             	Item i = (Item) e;
                 i.isPickedUp();
                 player.addItem(i);
-                //System.out.println("picked up" + e);
             }
 
             // talk to villager
             if (e instanceof Villager) {
                 Villager v = (Villager) e;
                 v.meetPlayer(player);
-                //System.out.println("meet " + e + " " + villagerList.size());
             }
 
             // attack Monster
@@ -314,7 +304,7 @@ public class World
     }
 
 
-    /** Render the entire screen, so it reflects the current game state.
+    /** Render the map, player and existing objects
      * @param g The Slick graphics object, used for drawing.
      */
     public void render(Graphics g)
